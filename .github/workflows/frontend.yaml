@@ -36,6 +36,7 @@ jobs:
           path: frontend/.next
           retention-days: 7
   test:
+    needs: build
     name: "test suie"
     runs-on: ubuntu-latest
     steps:
