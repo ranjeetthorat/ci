@@ -38,6 +38,15 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - name: "Chcking env varibales"
+        env:
+          API_KEY: ${{ secrets.DUMMY_API_KEY }}
+          API_KEY2: ${{ var.DUMMY_API_KEY2 }}
+        run: |
+          echo "Using API key to authenticate..."
+          echo "Key length check: ${#API_KEY} characters"
+          echo "Second key length check: ${#API_KEY} characters"
+          echo "Second key length check: ${#API_KEY2} characters"
       - name: Download backend jar artifact
         uses: actions/download-artifact@v4
         with:
