@@ -50,5 +50,5 @@ jobs:
         working-directory: ./frontend
         run: npm install
 
-      - name: run test
+      - name: usin test case
         run: npm test
