@@ -9,7 +9,6 @@ on:
     branches: [main]
     paths:
       - "backend/**"
-  workflow_dispatch:
 
 jobs:
   build:
@@ -33,3 +32,28 @@ jobs:
           name: backend-jar
           path: backend/target/*.jar
           retention-days: 7
+
+  verify:
+    name: Verify Jar Runs
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download backend jar artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: backend-jar
+          path: ./downloaded-jar
+
+      - name: List downloaded contents
+        run: ls -la ./downloaded-jar
+
+      - uses: actions/setup-java@v4
+        with:
+          java-version: "21"
+          distribution: "temurin"
+
+      - name: Start the jar and check health endpoint
+        run: |
+          nohup java -jar ./downloaded-jar/*.jar > app.log 2>&1 &
+          sleep 10
+          curl -f http://localhost:8080/api/health
