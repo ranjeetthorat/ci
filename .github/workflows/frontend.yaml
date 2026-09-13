@@ -50,6 +50,6 @@ jobs:
         working-directory: ./frontend
         run: npm install
 
-      - name: usin test case
+      - name: use unit test case
         working-directory: ./frontend
         run: npm test
