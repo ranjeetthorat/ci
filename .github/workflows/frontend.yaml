@@ -53,3 +53,21 @@ jobs:
       - name: use unit test case
         working-directory: ./frontend
         run: npm test
+
+  dockerise:
+    name: "build and push odckeri"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./frontend
+          push: true
+          tags: ghcr.io/${{ github.repository_owner }}/todo-backend:${{ github.sha }}
