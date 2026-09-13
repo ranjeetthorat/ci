@@ -70,4 +70,4 @@ jobs:
         with:
           context: ./frontend
           push: true
-          tags: ghcr.io/${{ github.repository_owner }}/todo-backend:${{ github.sha }}
+          tags: ghcr.io/${{ github.repository_owner }}/todo-ui:${{ github.sha }}
