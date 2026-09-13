@@ -4,7 +4,7 @@ Minimal, lightweight Spring Boot 3 REST API for managing Todos with an in-memory
 
 ---
 
-## Server & Environment Prerequisites
+## Server & Environment Prerequisites see
 
 This application does not require any database or external services. To build and run on your target server, ensure the following are installed:
 
@@ -19,18 +19,24 @@ This application does not require any database or external services. To build an
 ## Build and Run
 
 ### 1. Build the Executable JAR
+
 From inside the `backend` directory:
+
 ```bash
 mvn clean package
 ```
+
 This runs all unit/integration tests and produces a runnable fat JAR in the `target/` directory:
 `target/todobackend-0.0.1-SNAPSHOT.jar`
 
 ### 2. Run the Application
+
 ```bash
 java -jar target/todobackend-0.0.1-SNAPSHOT.jar
 ```
+
 Or directly using Maven:
+
 ```bash
 mvn spring-boot:run
 ```
@@ -53,11 +59,12 @@ The application will start on port `8080` (default) with an embedded Tomcat serv
 
 ### Health Check
 
-| Method | Endpoint | Description | Response Example |
-| :--- | :--- | :--- | :--- |
-| `GET` | `/api/health` | Service health status | `{"status":"ok"}` |
+| Method | Endpoint      | Description           | Response Example  |
+| :----- | :------------ | :-------------------- | :---------------- |
+| `GET`  | `/api/health` | Service health status | `{"status":"ok"}` |
 
 #### Example:
+
 ```bash
 curl -X GET http://localhost:8080/api/health
 ```
@@ -68,24 +75,27 @@ curl -X GET http://localhost:8080/api/health
 
 Base path: `/api/todos`
 
-| Method | Endpoint | Description | Request Body | Success Status |
-| :--- | :--- | :--- | :--- | :--- |
-| `GET` | `/api/todos` | List all todos | _None_ | `200 OK` |
-| `POST` | `/api/todos` | Create a new todo | `{"title": "..."}` | `201 Created` |
-| `PUT` | `/api/todos/{id}` | Update existing todo | `{"title": "...", "completed": true}` | `200 OK` (or `404 Not Found`) |
-| `DELETE` | `/api/todos/{id}` | Delete a todo by ID | _None_ | `204 No Content` (or `404 Not Found`) |
+| Method   | Endpoint          | Description          | Request Body                          | Success Status                        |
+| :------- | :---------------- | :------------------- | :------------------------------------ | :------------------------------------ |
+| `GET`    | `/api/todos`      | List all todos       | _None_                                | `200 OK`                              |
+| `POST`   | `/api/todos`      | Create a new todo    | `{"title": "..."}`                    | `201 Created`                         |
+| `PUT`    | `/api/todos/{id}` | Update existing todo | `{"title": "...", "completed": true}` | `200 OK` (or `404 Not Found`)         |
+| `DELETE` | `/api/todos/{id}` | Delete a todo by ID  | _None_                                | `204 No Content` (or `404 Not Found`) |
 
 ---
 
 ### Example cURL Commands
 
 #### 1. Create a Todo
+
 ```bash
 curl -X POST http://localhost:8080/api/todos \
   -H "Content-Type: application/json" \
   -d '{"title": "Complete Spring Boot task"}'
 ```
+
 Response (`201 Created`):
+
 ```json
 {
   "id": 1,
@@ -95,10 +105,13 @@ Response (`201 Created`):
 ```
 
 #### 2. Get All Todos
+
 ```bash
 curl -X GET http://localhost:8080/api/todos
 ```
+
 Response (`200 OK`):
+
 ```json
 [
   {
@@ -110,12 +123,15 @@ Response (`200 OK`):
 ```
 
 #### 3. Update a Todo
+
 ```bash
 curl -X PUT http://localhost:8080/api/todos/1 \
   -H "Content-Type: application/json" \
   -d '{"title": "Complete Spring Boot task", "completed": true}'
 ```
+
 Response (`200 OK`):
+
 ```json
 {
   "id": 1,
@@ -125,7 +141,9 @@ Response (`200 OK`):
 ```
 
 #### 4. Delete a Todo
+
 ```bash
 curl -X DELETE http://localhost:8080/api/todos/1
 ```
+
 Response (`204 No Content`)
