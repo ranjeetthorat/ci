@@ -6,7 +6,7 @@ Minimal, lightweight Spring Boot 3 REST API for managing Todos with an in-memory
 
 ## Server & Environment Prerequisites see
 
-This application does not require any database or external services. To build and run on your target server, ensure the following are installed:
+This application does not require any database or external services. To build and run on your target server, ensure the following are installed use keys:
 
 1. **Java Development Kit (JDK) 21**
    - e.g., Eclipse Temurin 21, Amazon Corretto 21, or OpenJDK 21
